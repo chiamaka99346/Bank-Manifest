@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-banking-deployment
+  namespace: banking-app
 spec:
   replicas: 1 
   selector:
