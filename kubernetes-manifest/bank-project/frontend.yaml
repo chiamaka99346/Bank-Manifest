@@ -4,18 +4,20 @@ metadata:
   name: frontend-banking-deployment
   namespace: banking-app
 spec:
-  replicas: 1 
+  replicas: 2
   selector:
     matchLabels:
-      app: frontend-banking-deployment
+      app: bank-frontend  # Changed to match service
   template:
     metadata:
       labels:
-        app: frontend-banking-deployment
+        app: bank-frontend  # Changed to match service
     spec:
+      imagePullSecrets:
+      - name: ecr-registry  # Added pull secret
       containers:
       - name: frontend-banking-container
-        image: 570071717271.dkr.ecr.us-east-1.amazonaws.com/bank-frontend:latest
+        image: 570071717271.dkr.ecr.us-east-1.amazonaws.com/bank-frontend:6 # Use public image for testing, or your ECR image if exists
         ports:
         - containerPort: 3000
         env:
