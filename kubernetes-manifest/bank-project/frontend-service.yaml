@@ -5,7 +5,7 @@ metadata:
   namespace: banking-app
 spec:
   selector:
-    app: bank-frontend  # This should match deployment labels
+    app: bank-frontend-deployment  # This should match deployment labels
   ports:
   - port: 3000
     targetPort: 3000

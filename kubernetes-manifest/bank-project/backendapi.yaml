@@ -4,20 +4,18 @@ metadata:
   name: bank-backend-deployment
   namespace: banking-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: bank-backend  # Changed to match service
+      app: bank-backend-deployment
   template:
     metadata:
       labels:
-        app: bank-backend  # Changed to match service
+        app: bank-backend-deployment
     spec:
-      imagePullSecrets:
-      - name: ecr-registry  # Added pull secret
       containers:
       - name: bank-backend-container
-        image: 570071717271.dkr.ecr.us-east-1.amazonaws.com/bank-backendapi:13  # Changed to tag 13
+        image: 570071717271.dkr.ecr.us-east-1.amazonaws.com/bank-backendapi:13
         ports:
         - containerPort: 8080
         env:
@@ -36,6 +34,7 @@ spec:
             configMapKeyRef:
               name: bank-config
               key: DB_NAME
+
         - name: DB_USERNAME
           valueFrom:
             secretKeyRef:

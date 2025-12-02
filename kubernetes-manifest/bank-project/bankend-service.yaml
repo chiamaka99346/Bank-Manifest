@@ -5,8 +5,9 @@ metadata:
   namespace: banking-app
 spec:
   selector:
-    app: bank-backend  # This should match deployment labels
+    app: bank-backend-deployment
   ports:
-  - port: 8080
-    targetPort: 8080
+    - protocol: TCP
+      port: 8080  
+      targetPort: 8080  
   type: ClusterIP
